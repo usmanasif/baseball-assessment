@@ -1,8 +1,10 @@
 // Third Party Packages Imports
 const express = require('express')
+const swaggerUi = require('swagger-ui-express')
 
 // Custom Imports
 const routes = require('./src/routes')
+const swaggerDocument = require('./swagger.json')
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -18,6 +20,9 @@ app.use((req, res, next) => {
   )
   next()
 })
+
+// Swagger
+app.use('/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 // Routes
 routes(app)

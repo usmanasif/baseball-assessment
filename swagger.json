@@ -1,0 +1,204 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is Swagger Documentation of all endpoints",
+    "version": "1.0.0",
+    "title": "Baseball Game Stats"
+  },
+  "schemes": [
+    "http"
+  ],
+  "host": "localhost:3000",
+  "basePath": "/api/v1",
+  "paths": {
+    "/players/{id}/stats": {
+      "get": {
+        "summary": "Get player's games stats",
+        "description": "Get games stats of a player with respect to its playerID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "playerId whose stats needs to fetched",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "$ref" : "#/definitions/gameDataResponse"
+            }
+          },
+          "400": {
+            "description": "bad request error",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          },
+          "404": {
+            "description": "not found error",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          }
+        }
+      }
+    },
+    "/players": {
+      "post": {
+        "summary": "Post the new game data of player",
+        "description": "Save the new game stats data of player into database",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "player game data object (You have provide all information)",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/playerBodyRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          },
+          "500": {
+            "description": "internal server error",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "gameDataResponse": {
+      "type": "object",
+      "properties": {
+        "PlayerId": {
+          "type": "integer"
+        },
+        "Class": {
+          "type": "string"
+        },
+        "Games": {
+          "type": "array",
+          "items" : {
+            "$ref" : "#/definitions/unitGameReponse"
+          }
+        }
+      }
+    },
+    "unitGameReponse": {
+      "type": "object",
+      "properties": {
+        "Opponent": {
+          "type": "string"
+        },
+        "BA (Batting avg)": {
+          "type": "integer"
+        },
+        "PA (Plate appereances)": {
+          "type": "integer"
+        },
+         "R (Runs)": {
+          "type": "integer"
+        },
+         "H (Hits)": {
+          "type": "integer"
+        },
+         "RBI (Runs Batted In)": {
+          "type": "integer"
+        },
+         "2B (Doubles)": {
+          "type": "integer"
+        },
+         "3B (Triples)": {
+          "type": "integer"
+        },
+         "HR (Homerun)": {
+          "type": "integer"
+        }
+      }
+    },
+    "playerBodyRequest": {
+      "type": "object",
+      "properties": {
+        "playerId": {
+          "type": "integer",
+          "minItems": 1
+        },
+        "gameDate": {
+          "type": "string",
+          "format" :"date"
+        },
+        "opponent": {
+          "type": "string"
+        },
+        "battingAvg": {
+          "type": "number",
+          "format": "float"
+        },
+        "plateAppearances": {
+          "type": "integer"
+        },
+         "atBats": {
+          "type": "integer"
+        },
+         "runs": {
+          "type": "integer"
+        },
+         "hits": {
+          "type": "integer"
+        },
+         "runBattedIn": {
+          "type": "integer"
+        },
+         "doubles": {
+          "type": "integer"
+        },
+         "triples": {
+          "type": "integer"
+        },
+         "homerun": {
+          "type": "integer"
+        },
+         "class": {
+          "type": "string"
+        }
+      }
+    },
+    "InvalidResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
