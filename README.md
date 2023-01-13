@@ -44,4 +44,20 @@ Before you get started, the following needs to be installed:
 
 5.  See endpoints on swagger by hitting http://localhost:3000/v1/api-docs
 
+## Run Through Docker
+### Requirements
+
+Before you get started with docker, the following needs to be installed:
+  * **Docker** 20.10.22
+
+### Setting up the docker environment
+
+1.  You can also run script by configuring docker. You can download docker from here https://docs.docker.com/get-docker/
+
+2.  After install, configure docker compose and run the following command:
+
+    ```
+    docker compose up
+    ```
+
 Congratulations! Basball Stats should now be up and running for development purposes.
