@@ -1,11 +1,38 @@
 const {
+  ADDED,
   INTERNAL_SERVER_ERROR,
-  NOT_FOUND
+  NOT_FOUND,
+  PLAYER_NOT_ADDED_MSG
 } = require('../../utils/messages')
 const { filePath } = require('../../configs/app')
 const { fetchPlayerStats } = require('../../utils/stats')
-const { readSheet } = require('../../utils/excel')
+const { readSheet, writeToFile } = require('../../utils/excel')
 const STATUS = require('../../utils/status')
+
+exports.create = ({ body }, res) => {
+  try {
+    const data = [
+      body['playerId'],
+      body['gameDate'],
+      body['opponent'],
+      body['battingAvg'],
+      body['plateAppearances'],
+      body['atBats'],
+      body['runs'],
+      body['hits'],
+      body['runBattedIn'],
+      body['doubles'],
+      body['triples'],
+      body['homerun'],
+      body['class']
+    ]
+
+    writeToFile(filePath, data)
+    return res.status(STATUS.OK).send({ message: ADDED })
+  } catch (error) {
+    return res.status(STATUS.INTERNAL_ERROR).send({ message: error.message || PLAYER_NOT_ADDED_MSG })
+  }
+}
 
 exports.getPlayerStats = async (req, res) => {
   try {
