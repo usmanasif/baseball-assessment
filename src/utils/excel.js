@@ -39,7 +39,7 @@ const getRowNumber = (data, id) => {
   const ids = data.map(val => val.PlayerId)
 
   const lastIdx = ids.lastIndexOf(id)
-  if (lastIdx > 0) 
+  if (lastIdx > 0)
     return lastIdx + 3
   else {
     const nextIndex = ids.findIndex(val => (val > id))

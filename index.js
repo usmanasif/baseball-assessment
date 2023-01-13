@@ -28,3 +28,6 @@ app.use('/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 routes(app)
 
 app.listen(port, () => console.log(`Listening on port ${port}`))
+
+// For Test Cases
+module.exports = app

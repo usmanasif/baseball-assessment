@@ -20,8 +20,8 @@ Before you get started, the following needs to be installed:
 1.  Get the code. Clone this git repository and check out the latest release:
 
     ```bash
-    git clone 
-    cd baseball-stats
+    git clone https://github.com/DevKnight7/baseball-assessment.git
+    cd baseball-assessment
     ```
 
 2.  Install nodemon by running the following command in the terminal:
@@ -43,6 +43,12 @@ Before you get started, the following needs to be installed:
     ```
 
 5.  See endpoints on swagger by hitting http://localhost:3000/v1/api-docs
+
+6. For run test cases, Run following command
+
+    ```
+    npm run test
+    ```
 
 ## Run Through Docker
 ### Requirements
