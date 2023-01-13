@@ -1,4 +1,4 @@
-version: "3.00"
+version: "3"
 name: baseball-stats-server
 services:
   app:
@@ -10,4 +10,5 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ".:/usr/src/app"
+      - ".:/usr/app"
+    command: ["node","index.js"]
